@@ -42,6 +42,7 @@ subprojects {
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-webflux")
+
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         //kotlin 의존성
@@ -66,6 +67,25 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+project(":infrastructures") {
+    val jar: Jar by tasks
+    val bootJar: BootJar by tasks
+
+    bootJar.enabled = false
+    jar.enabled = true
+}
+
+project(":infrastructures:network") {
+    val jar: Jar by tasks
+    val bootJar: BootJar by tasks
+
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+        implementation("io.netty:netty-all:4.1.107.Final")
+    }
+}
 
 project(":svelte-server") {
     val jar: Jar by tasks
@@ -77,24 +97,4 @@ project(":svelte-server") {
     dependencies {
 
     }
-}
-
-project(":infrastructures") {
-    val jar: Jar by tasks
-    val bootJar: BootJar by tasks
-
-    bootJar.enabled = false
-    jar.enabled = true
-}
-
-project(":infrastructures:socket") {
-    val jar: Jar by tasks
-    val bootJar: BootJar by tasks
-
-    bootJar.enabled = false
-    jar.enabled = true
-
-//    dependencies {
-//
-//    }
 }
