@@ -95,6 +95,6 @@ project(":svelte-server") {
     jar.enabled = true
 
     dependencies {
-
+        implementation(project(":infrastructures:network"))
     }
 }
