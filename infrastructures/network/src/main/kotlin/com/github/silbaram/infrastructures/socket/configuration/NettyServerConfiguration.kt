@@ -21,8 +21,9 @@ class NettyServerConfiguration(
         val bossGroup: EventLoopGroup = NioEventLoopGroup()
         val workerGroup: EventLoopGroup = NioEventLoopGroup(
                 Runtime.getRuntime().availableProcessors() * 10,
-                Executors.newVirtualThreadPerTaskExecutor()
+                Thread.ofVirtual().name("workerGroupVirtualThread").factory()
         )
+
 
         try {
             val b = ServerBootstrap() // (2)

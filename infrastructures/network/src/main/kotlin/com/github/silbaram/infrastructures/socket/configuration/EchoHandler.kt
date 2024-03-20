@@ -8,6 +8,7 @@ class EchoHandler: ChannelInboundHandlerAdapter() {
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
         println(Thread.currentThread().isVirtual)
+        println(Thread.currentThread().name)
         ctx.write(msg)
         ctx.flush()
     }
