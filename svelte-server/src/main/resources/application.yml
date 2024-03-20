@@ -1,4 +1,4 @@
 app:
   network:
     protocol:
-      codec: "json"
+      codec: ${codec.code:json}
