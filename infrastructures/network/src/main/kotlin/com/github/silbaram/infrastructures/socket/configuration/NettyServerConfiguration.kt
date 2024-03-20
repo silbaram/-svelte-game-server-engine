@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import org.springframework.context.annotation.Bean
+import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
@@ -18,7 +19,11 @@ class NettyServerConfiguration(
     @Throws(Exception::class)
     fun run() {
         val bossGroup: EventLoopGroup = NioEventLoopGroup()
-        val workerGroup: EventLoopGroup = NioEventLoopGroup(2, Executors.newVirtualThreadPerTaskExecutor())
+        val workerGroup: EventLoopGroup = NioEventLoopGroup(
+                Runtime.getRuntime().availableProcessors() * 10,
+                Executors.newVirtualThreadPerTaskExecutor()
+        )
+
         try {
             val b = ServerBootstrap() // (2)
 
