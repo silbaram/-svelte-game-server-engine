@@ -87,6 +87,18 @@ project(":infrastructures:network") {
     }
 }
 
+project(":infrastructures:server") {
+    val jar: Jar by tasks
+    val bootJar: BootJar by tasks
+
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+        implementation("io.netty:netty-all:4.1.107.Final")
+    }
+}
+
 project(":svelte-server") {
     val jar: Jar by tasks
     val bootJar: BootJar by tasks
@@ -96,5 +108,6 @@ project(":svelte-server") {
 
     dependencies {
         implementation(project(":infrastructures:network"))
+        implementation(project(":infrastructures:server"))
     }
 }

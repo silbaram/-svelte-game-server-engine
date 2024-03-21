@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration
 class CodecAutoFactoryConfiguration {
 
     @Bean
-    @ConditionalOnExpression("'\${app.network.protocol.codec}' == 'json'")
+    @ConditionalOnExpression("'\${svelte-app.network.protocol.codec}' == 'json'")
     fun createJsonSerializerFactory(): SerializerFactory = JsonSerializerFactory()
 }
