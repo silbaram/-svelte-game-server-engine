@@ -1,4 +1,4 @@
-package com.github.silbaram.infrastructures.server.configuration
+package com.github.silbaram.svelte.server.handler
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter

@@ -6,7 +6,3 @@ svelte-app:
     socket:
       port: ${socket.port:8089}
       worker-group-thread-count: ${socket.worker-group-thread-count:10}
-
-#spring:
-#  main:
-#    allow-bean-definition-overriding: true

@@ -9,14 +9,14 @@ import io.netty.channel.EventLoopGroup
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 
-class NettyServerConfiguration(
+class NettyServerConfigurationTest(
     private val serverSocketProperties: ServerSocketProperties
 ): NettyServerTemplate {
 
     override fun createWorkerGroup(): EventLoopGroup {
         return NioEventLoopGroup(
             Runtime.getRuntime().availableProcessors() * serverSocketProperties.workerGroupThreadCount,
-            threadFactory("workerGroupVirtualThread")
+            threadFactory("workerGroupVirtualThread2")
         )
     }
 
@@ -25,12 +25,10 @@ class NettyServerConfiguration(
     }
 
     override fun serverBootstrapAddOption(serverBootstrap: ServerBootstrap) {
-        serverBootstrap
-            .option(ChannelOption.SO_BACKLOG, 128)
-            .childOption(ChannelOption.SO_KEEPALIVE, true)
+        serverBootstrap.option(ChannelOption.SO_BACKLOG, 128)
     }
 
     override fun serverPort(): Int {
-        return serverSocketProperties.port
+        return 8087
     }
 }
