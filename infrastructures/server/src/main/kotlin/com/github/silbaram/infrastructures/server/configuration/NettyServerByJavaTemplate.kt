@@ -42,7 +42,7 @@ abstract class NettyServerByJavaTemplate: NettyServer {
 
     private fun createServerBootstrap(): ServerBootstrap = ServerBootstrap()
 
-    fun threadFactory(threadName: String): ThreadFactory = Thread.ofVirtual().name(threadName).factory()
+    open fun threadFactory(threadName: String): ThreadFactory = Thread.ofVirtual().name(threadName).factory()
 
     @Bean(destroyMethod = "shutdownGracefully")
     private fun createBossGroup(): EventLoopGroup = NioEventLoopGroup()
