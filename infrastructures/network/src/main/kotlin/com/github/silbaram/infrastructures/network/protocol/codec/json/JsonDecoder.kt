@@ -1,10 +1,10 @@
-package com.github.silbaram.infrastructures.protocol.codec.json
+package com.github.silbaram.infrastructures.network.protocol.codec.json
 
 import com.fasterxml.jackson.databind.JavaType
 import com.fasterxml.jackson.databind.type.TypeFactory
-import com.github.silbaram.infrastructures.protocol.Message
-import com.github.silbaram.infrastructures.protocol.codec.Decoder
-import com.github.silbaram.infrastructures.protocol.codec.json.JsonSerializerFactory.Companion.MAPPER
+import com.github.silbaram.infrastructures.network.protocol.Message
+import com.github.silbaram.infrastructures.network.protocol.codec.Decoder
+import com.github.silbaram.infrastructures.network.protocol.codec.json.JsonSerializerFactory.Companion.MAPPER
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -22,7 +22,7 @@ class JsonDecoder: Decoder {
             MAPPER.readValue(json, type) as T
         } catch (e: Exception) {
             logger.error("", e)
-            "" as T
+            clazz.getDeclaredConstructor().newInstance()
         }
     }
 }

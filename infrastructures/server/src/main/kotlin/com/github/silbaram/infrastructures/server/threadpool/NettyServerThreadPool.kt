@@ -1,6 +1,6 @@
 package com.github.silbaram.infrastructures.server.threadpool
 
-import com.github.silbaram.infrastructures.server.configuration.NettyServerTemplate
+import com.github.silbaram.infrastructures.server.configuration.NettyServerByKotlinTemplate
 import jakarta.annotation.PreDestroy
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Configuration
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 @EnableAsync
 @Configuration
 class NettyServerThreadPool(
-    private val nettyServerConfigs: Map<String, NettyServerTemplate>
+    private val nettyServerConfigs: Map<String, NettyServerByKotlinTemplate>
 ): AsyncConfigurer {
 
     val logger = LoggerFactory.getLogger(NettyServerThreadPool::class.java)

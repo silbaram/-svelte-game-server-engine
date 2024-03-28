@@ -1,9 +1,9 @@
-package com.github.silbaram.infrastructures.protocol.codec.json
+package com.github.silbaram.infrastructures.network.protocol.codec.json
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.silbaram.infrastructures.protocol.codec.Decoder
-import com.github.silbaram.infrastructures.protocol.codec.Encoder
-import com.github.silbaram.infrastructures.protocol.codec.SerializerFactory
+import com.github.silbaram.infrastructures.network.protocol.codec.Decoder
+import com.github.silbaram.infrastructures.network.protocol.codec.Encoder
+import com.github.silbaram.infrastructures.network.protocol.codec.SerializerFactory
 import org.springframework.context.annotation.Configuration
 
 @Configuration

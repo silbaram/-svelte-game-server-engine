@@ -1,8 +1,8 @@
-package com.github.silbaram.infrastructures.protocol.codec.json
+package com.github.silbaram.infrastructures.network.protocol.codec.json
 
-import com.github.silbaram.infrastructures.protocol.Message
-import com.github.silbaram.infrastructures.protocol.codec.Encoder
-import com.github.silbaram.infrastructures.protocol.codec.json.JsonSerializerFactory.Companion.MAPPER
+import com.github.silbaram.infrastructures.network.protocol.Message
+import com.github.silbaram.infrastructures.network.protocol.codec.Encoder
+import com.github.silbaram.infrastructures.network.protocol.codec.json.JsonSerializerFactory.Companion.MAPPER
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.StringWriter
