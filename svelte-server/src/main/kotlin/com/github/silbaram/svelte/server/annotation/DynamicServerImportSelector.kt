@@ -1,4 +1,4 @@
-package com.github.silbaram.infrastructures.server.annotation
+package com.github.silbaram.svelte.server.annotation
 
 import org.springframework.context.annotation.ImportSelector
 import org.springframework.core.annotation.AnnotationAttributes

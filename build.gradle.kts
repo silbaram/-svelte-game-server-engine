@@ -21,7 +21,7 @@ java {
 }
 
 allprojects {
-    group = "com.github.silbaram"
+    group = "io.github.silbaram"
     version = "0.0.1-SNAPSHOT"
 
     repositories {
@@ -63,6 +63,13 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+tasks.withType<Jar> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(subprojects.map { it.tasks.named("compileKotlin") })
+    from(subprojects.map { it.tasks.named("processResources") })
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -72,7 +79,7 @@ project(":infrastructures") {
     val bootJar: BootJar by tasks
 
     bootJar.enabled = false
-    jar.enabled = true
+    jar.enabled = false
 }
 
 project(":infrastructures:network") {
