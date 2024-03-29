@@ -1,6 +1,6 @@
-package com.github.silbaram.svelte.server.configuration
+package com.github.silbaram.svelte.server.configuration.test
 
-import com.github.silbaram.infrastructures.server.configuration.NettyServerByKotlinTemplate
+import com.github.silbaram.infrastructures.server.configuration.NettyServerTemplate
 import com.github.silbaram.infrastructures.server.configuration.ServerSocketProperties
 import com.github.silbaram.svelte.server.handler.EchoHandler
 import io.netty.bootstrap.ServerBootstrap
@@ -10,9 +10,9 @@ import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 
 //TODO 테스트 코드 이므로 최종엔 삭제 해야됨
-class NettyServerConfiguration(
+open class NettyServerConfiguration(
     private val serverSocketProperties: ServerSocketProperties
-): NettyServerByKotlinTemplate {
+): NettyServerTemplate() {
 
     override fun createWorkerGroup(): EventLoopGroup {
         return NioEventLoopGroup(

@@ -1,7 +1,7 @@
 package com.github.silbaram.svelte.server
 
 import com.github.silbaram.svelte.server.annotation.EnableNettyServer
-import com.github.silbaram.svelte.server.configuration.NettyServerConfiguration
+import com.github.silbaram.svelte.server.configuration.test.NettyServerConfiguration
 import org.springframework.boot.WebApplicationType
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
