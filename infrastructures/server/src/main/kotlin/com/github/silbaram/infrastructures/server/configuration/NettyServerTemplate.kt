@@ -8,20 +8,22 @@ import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
+import org.springframework.scheduling.annotation.Async
 import java.util.concurrent.ThreadFactory
 
+abstract class NettyServerTemplate {
 
-abstract class NettyServerByJavaTemplate: NettyServer {
-
-    fun nettyServerStart() {
-        val logger = LoggerFactory.getLogger(NettyServerByJavaTemplate::class.java)
+    @Async
+    @Throws(Exception::class)
+    open fun nettyServerStart() {
+        val logger = LoggerFactory.getLogger(NettyServerTemplate::class.java)
         logger.info("Svelte Engine started on port : ${serverPort()}")
 
         val bossGroup: EventLoopGroup = createBossGroup()
         val workerGroup: EventLoopGroup = createWorkerGroup()
 
         try {
-            val serverBootstrap = createServerBootstrap()
+            val serverBootstrap = ServerBootstrap()
             serverBootstrap.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel::class.java)
                 .childHandler(object : ChannelInitializer<SocketChannel>() {
@@ -40,15 +42,13 @@ abstract class NettyServerByJavaTemplate: NettyServer {
         }
     }
 
-    private fun createServerBootstrap(): ServerBootstrap = ServerBootstrap()
-
     open fun threadFactory(threadName: String): ThreadFactory = Thread.ofVirtual().name(threadName).factory()
 
     @Bean(destroyMethod = "shutdownGracefully")
     private fun createBossGroup(): EventLoopGroup = NioEventLoopGroup()
 
     @Bean(destroyMethod = "shutdownGracefully")
-    abstract fun createWorkerGroup(): EventLoopGroup
+    open fun createWorkerGroup(): EventLoopGroup = NioEventLoopGroup()
 
     abstract fun addHandler(socketChannel: SocketChannel)
 
