@@ -52,7 +52,10 @@ subprojects {
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.7.2")
 
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
+        testImplementation("io.kotest:kotest-runner-junit5:5.8.1")
+
     }
 }
 
@@ -70,7 +73,7 @@ tasks.withType<Jar> {
     from(subprojects.map { it.tasks.named("processResources") })
 }
 
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 

@@ -1,7 +1,6 @@
-package com.github.silbaram.svelte.server.configuration.test
+package com.github.silbaram.svelte.server.configuration
 
 import com.github.silbaram.infrastructures.server.configuration.NettyServerTemplate
-import com.github.silbaram.infrastructures.server.configuration.ServerSocketProperties
 import com.github.silbaram.svelte.server.handler.EchoHandler
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelOption
@@ -9,14 +8,11 @@ import io.netty.channel.EventLoopGroup
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 
-//TODO 테스트 코드 이므로 최종엔 삭제 해야됨
-open class NettyServerConfiguration(
-    private val serverSocketProperties: ServerSocketProperties
-): NettyServerTemplate() {
+open class NettyServerConfiguration: NettyServerTemplate() {
 
     override fun createWorkerGroup(): EventLoopGroup {
         return NioEventLoopGroup(
-            Runtime.getRuntime().availableProcessors() * serverSocketProperties.workerGroupThreadCount,
+            Runtime.getRuntime().availableProcessors() * 10,
             threadFactory("workerGroupVirtualThread")
         )
     }
@@ -32,6 +28,6 @@ open class NettyServerConfiguration(
     }
 
     override fun serverPort(): Int {
-        return serverSocketProperties.port
+        return 22000
     }
 }

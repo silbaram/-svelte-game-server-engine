@@ -23,7 +23,7 @@ abstract class NettyServerTemplate {
         val workerGroup: EventLoopGroup = createWorkerGroup()
 
         try {
-            val serverBootstrap = createServerBootstrap()
+            val serverBootstrap = ServerBootstrap()
             serverBootstrap.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel::class.java)
                 .childHandler(object : ChannelInitializer<SocketChannel>() {
@@ -41,8 +41,6 @@ abstract class NettyServerTemplate {
             bossGroup.shutdownGracefully()
         }
     }
-
-    private fun createServerBootstrap(): ServerBootstrap = ServerBootstrap()
 
     open fun threadFactory(threadName: String): ThreadFactory = Thread.ofVirtual().name(threadName).factory()
 

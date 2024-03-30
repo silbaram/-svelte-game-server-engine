@@ -2,7 +2,6 @@ svelte-app:
   network:
     protocol:
       codec: ${codec.code:json}
-  server:
-    socket:
-      port: ${socket.port:8089}
-      worker-group-thread-count: ${socket.worker-group-thread-count:10}
+  termination:
+    wait:
+      time: ${termination.wait.time:1}
