@@ -10,11 +10,27 @@ jar.enabled = true
 plugins {
     id("org.springframework.boot") version "3.2.3"
     id("io.spring.dependency-management") version "1.1.4"
+//로컬에 배포하기 위함으로 주석처리함
+//    id("java-library")
+//    id("maven-publish")
 
     kotlin("jvm") version "1.9.22"
     kotlin("plugin.spring") version "1.9.22" apply false ////Kotlin 으로 작성된 Spring Boot 효과적으로 개발할 수 있게 해주는 설정을 자동으로 추가
     kotlin("plugin.serialization") version "1.9.22" apply false //Kotlin Serialization 을 사용하기 위한 설정을 자동으로 추가
 }
+
+//로컬에 배포하기 위함으로 주석처리함
+//publishing {
+//    publications {
+//        create<MavenPublication>("mavenJava") {
+//            groupId = "io.github.silbaram"
+//            artifactId = "svelte-game-server-engine"
+//            version = "0.0.1-SNAPSHOT"
+//
+//            from(components["java"])
+//        }
+//    }
+//}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -98,18 +114,6 @@ project(":infrastructures:network") {
     }
 }
 
-project(":infrastructures:server") {
-    val jar: Jar by tasks
-    val bootJar: BootJar by tasks
-
-    bootJar.enabled = false
-    jar.enabled = true
-
-    dependencies {
-        implementation("io.netty:netty-all:4.1.107.Final")
-    }
-}
-
 project(":svelte-server") {
     val jar: Jar by tasks
     val bootJar: BootJar by tasks
@@ -119,6 +123,5 @@ project(":svelte-server") {
 
     dependencies {
         implementation(project(":infrastructures:network"))
-        implementation(project(":infrastructures:server"))
     }
 }

@@ -1,6 +1,5 @@
 package com.github.silbaram.svelte.server.configuration
 
-import com.github.silbaram.infrastructures.server.configuration.NettyServerTemplate
 import com.github.silbaram.svelte.server.handler.EchoHandler
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelOption

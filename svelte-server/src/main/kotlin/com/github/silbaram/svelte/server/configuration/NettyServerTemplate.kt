@@ -1,4 +1,4 @@
-package com.github.silbaram.infrastructures.server.configuration
+package com.github.silbaram.svelte.server.configuration
 
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelInitializer
