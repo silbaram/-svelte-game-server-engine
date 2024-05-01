@@ -3,9 +3,12 @@ package com.github.silbaram.svelte.server.configuration
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.EventLoopGroup
+import io.netty.channel.ServerChannel
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
+import io.netty.handler.logging.LogLevel
+import io.netty.handler.logging.LoggingHandler
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.scheduling.annotation.Async
@@ -25,7 +28,8 @@ abstract class NettyServerTemplate {
         try {
             val serverBootstrap = ServerBootstrap()
             serverBootstrap.group(bossGroup, workerGroup)
-                .channel(NioServerSocketChannel::class.java)
+                .channel(createServerBootstrap())
+                .handler(LoggingHandler(LogLevel.INFO))
                 .childHandler(object : ChannelInitializer<SocketChannel>() {
                     @Throws(Exception::class)
                     public override fun initChannel(socketChannel: SocketChannel) {
@@ -49,6 +53,8 @@ abstract class NettyServerTemplate {
 
     @Bean(destroyMethod = "shutdownGracefully")
     open fun createWorkerGroup(): EventLoopGroup = NioEventLoopGroup()
+
+    open fun createServerBootstrap(): Class<out ServerChannel> = NioServerSocketChannel::class.java
 
     abstract fun addHandler(socketChannel: SocketChannel)
 

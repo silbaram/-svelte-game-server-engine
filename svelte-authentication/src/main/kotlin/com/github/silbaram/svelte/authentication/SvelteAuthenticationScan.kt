@@ -1,0 +1,3 @@
+package com.github.silbaram.svelte.authentication
+
+interface SvelteAuthenticationScan

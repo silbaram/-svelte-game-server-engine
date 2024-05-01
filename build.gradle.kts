@@ -10,7 +10,7 @@ jar.enabled = true
 plugins {
     id("org.springframework.boot") version "3.2.3"
     id("io.spring.dependency-management") version "1.1.4"
-//로컬에 배포하기 위함으로 주석처리함
+//로컬에 배포하기용
 //    id("java-library")
 //    id("maven-publish")
 
@@ -19,7 +19,7 @@ plugins {
     kotlin("plugin.serialization") version "1.9.22" apply false //Kotlin Serialization 을 사용하기 위한 설정을 자동으로 추가
 }
 
-//로컬에 배포하기 위함으로 주석처리함
+//로컬에 배포하기용
 //publishing {
 //    publications {
 //        create<MavenPublication>("mavenJava") {
@@ -115,6 +115,18 @@ project(":infrastructures:network") {
 }
 
 project(":svelte-server") {
+    val jar: Jar by tasks
+    val bootJar: BootJar by tasks
+
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+        implementation(project(":infrastructures:network"))
+    }
+}
+
+project(":svelte-authentication") {
     val jar: Jar by tasks
     val bootJar: BootJar by tasks
 
