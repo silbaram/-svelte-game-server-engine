@@ -1,8 +1,8 @@
 package com.github.silbaram.svelte.server.annotation
 
 import com.github.silbaram.infrastructures.NetworkScan
-import com.github.silbaram.infrastructures.server.configuration.NettyServerTemplate
 import com.github.silbaram.svelte.server.SvelteServerScan
+import com.github.silbaram.svelte.server.configuration.NettyServerTemplate
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Import
 import kotlin.reflect.KClass

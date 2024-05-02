@@ -1,6 +1,6 @@
-package com.github.silbaram.infrastructures.server.threadpool
+package com.github.silbaram.svelte.server.threadpool
 
-import com.github.silbaram.infrastructures.server.configuration.NettyServerTemplate
+import com.github.silbaram.svelte.server.configuration.NettyServerTemplate
 import jakarta.annotation.PreDestroy
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value

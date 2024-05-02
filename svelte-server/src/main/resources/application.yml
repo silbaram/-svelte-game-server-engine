@@ -4,4 +4,4 @@ svelte-app:
       codec: ${codec.code:json}
   termination:
     wait:
-      time: ${termination.wait.time:1}
+      time: ${termination.wait.time:10}

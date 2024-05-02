@@ -1,6 +1,6 @@
-package com.github.silbaram.infrastructures.server
+package com.github.silbaram.svelte.server
 
-import com.github.silbaram.infrastructures.server.configuration.NettyServerTemplate
+import com.github.silbaram.svelte.server.configuration.NettyServerTemplate
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationListener
 import org.springframework.stereotype.Component

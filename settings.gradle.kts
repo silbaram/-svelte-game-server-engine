@@ -1,5 +1,6 @@
-rootProject.name = "svelte-engine"
+rootProject.name = "svelte-server-engine"
+
+include("infrastructures:network")
 
 include("svelte-server")
-include("infrastructures:network")
-include("infrastructures:server")
+include("svelte-authentication")
