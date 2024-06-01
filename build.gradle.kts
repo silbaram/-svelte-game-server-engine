@@ -14,9 +14,9 @@ plugins {
 //    id("java-library")
 //    id("maven-publish")
 
-    kotlin("jvm") version "1.9.22"
-    kotlin("plugin.spring") version "1.9.22" apply false ////Kotlin 으로 작성된 Spring Boot 효과적으로 개발할 수 있게 해주는 설정을 자동으로 추가
-    kotlin("plugin.serialization") version "1.9.22" apply false //Kotlin Serialization 을 사용하기 위한 설정을 자동으로 추가
+    kotlin("jvm") version "1.9.23"
+    kotlin("plugin.spring") version "1.9.23" apply false ////Kotlin 으로 작성된 Spring Boot 효과적으로 개발할 수 있게 해주는 설정을 자동으로 추가
+    kotlin("plugin.serialization") version "1.9.23" apply false //Kotlin Serialization 을 사용하기 위한 설정을 자동으로 추가
 }
 
 //로컬에 배포하기용
@@ -94,7 +94,23 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 
+project(":svelte-domain") {
+    val jar: Jar by tasks
+    val bootJar: BootJar by tasks
+
+    bootJar.enabled = false
+    jar.enabled = true
+}
+
 project(":infrastructures") {
+    val jar: Jar by tasks
+    val bootJar: BootJar by tasks
+
+    bootJar.enabled = false
+    jar.enabled = false
+}
+
+project(":svelte-sub-function") {
     val jar: Jar by tasks
     val bootJar: BootJar by tasks
 
@@ -114,6 +130,18 @@ project(":infrastructures:network") {
     }
 }
 
+project(":svelte-sub-function:room-function") {
+    val jar: Jar by tasks
+    val bootJar: BootJar by tasks
+
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+        implementation(project(":svelte-domain"))
+    }
+}
+
 project(":svelte-server") {
     val jar: Jar by tasks
     val bootJar: BootJar by tasks
@@ -123,17 +151,6 @@ project(":svelte-server") {
 
     dependencies {
         implementation(project(":infrastructures:network"))
-    }
-}
-
-project(":svelte-authentication") {
-    val jar: Jar by tasks
-    val bootJar: BootJar by tasks
-
-    bootJar.enabled = false
-    jar.enabled = true
-
-    dependencies {
-        implementation(project(":infrastructures:network"))
+        implementation(project(":svelte-sub-function:room-function"))
     }
 }

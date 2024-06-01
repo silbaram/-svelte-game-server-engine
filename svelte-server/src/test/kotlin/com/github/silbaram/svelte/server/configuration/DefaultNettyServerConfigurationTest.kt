@@ -9,7 +9,7 @@ import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
 
-open class NettyServerConfigurationTest: NettyServerTemplate() {
+open class DefaultNettyServerConfigurationTest: NettyServerTemplate() {
 
     override fun createWorkerGroup(): EventLoopGroup {
         return NioEventLoopGroup(

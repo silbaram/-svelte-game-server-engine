@@ -1,6 +1,7 @@
 package com.github.silbaram.svelte.server.annotation
 
 import com.github.silbaram.infrastructures.NetworkScan
+import com.github.silbaram.svelte.room.function.SvelteRoomFunctionScan
 import com.github.silbaram.svelte.server.SvelteServerScan
 import com.github.silbaram.svelte.server.configuration.NettyServerTemplate
 import org.springframework.context.annotation.ComponentScan
@@ -11,7 +12,11 @@ import kotlin.reflect.KClass
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Import(DynamicServerImportSelector::class)
-@ComponentScan(basePackageClasses = [SvelteServerScan::class, NetworkScan::class])
+@ComponentScan(basePackageClasses = [
+    SvelteServerScan::class,
+    NetworkScan::class,
+    SvelteRoomFunctionScan::class
+])
 annotation class EnableNettyServer(
     val serverConfigurationClasses: Array<KClass<out NettyServerTemplate>>
 )
