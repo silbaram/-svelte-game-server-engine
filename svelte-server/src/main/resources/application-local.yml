@@ -1,0 +1,3 @@
+svelte-app:
+  max-waitlist-size: ${MAX-WAITLIST-SIZE:4}
+  max-waitlist-time: ${MAX-WAITLIST-TIME:10}

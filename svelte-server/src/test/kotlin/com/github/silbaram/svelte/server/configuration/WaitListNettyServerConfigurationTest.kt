@@ -9,6 +9,8 @@ import io.netty.channel.ServerChannel
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
+import io.netty.handler.codec.string.StringDecoder
+import io.netty.handler.codec.string.StringEncoder
 import org.springframework.beans.factory.annotation.Autowired
 
 open class WaitListNettyServerConfigurationTest(
@@ -28,6 +30,8 @@ open class WaitListNettyServerConfigurationTest(
 
     override fun addHandler(socketChannel: SocketChannel) {
         socketChannel.pipeline()
+            .addLast(StringDecoder())
+            .addLast(StringEncoder())
             .addLast(WaitlistHandler(waitlistQueueContext))
     }
 

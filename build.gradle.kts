@@ -70,8 +70,10 @@ subprojects {
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
-        //https://kotest.io/docs/framework/project-setup.html
+        // https://kotest.io/docs/framework/project-setup.html
         testImplementation("io.kotest:kotest-runner-junit5:5.8.1")
+        // https://mvnrepository.com/artifact/io.mockk/mockk
+        testImplementation("io.mockk:mockk:1.13.11")
 
     }
 }
@@ -139,6 +141,7 @@ project(":svelte-sub-function:room-function") {
 
     dependencies {
         implementation(project(":svelte-domain"))
+        implementation("io.projectreactor:reactor-core:3.6.7")
     }
 }
 

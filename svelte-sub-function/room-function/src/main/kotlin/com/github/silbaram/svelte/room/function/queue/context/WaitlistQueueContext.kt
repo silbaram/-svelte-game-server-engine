@@ -2,17 +2,15 @@ package com.github.silbaram.svelte.room.function.queue.context
 
 import com.github.silbaram.svelte.domain.user.User
 import org.springframework.stereotype.Component
-import java.util.concurrent.LinkedBlockingQueue
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Sinks
 
 @Component
 class WaitlistQueueContext {
-    private val standbyUsersQueue = LinkedBlockingQueue<User>()
+    private val sink = Sinks.many().multicast().onBackpressureBuffer<User>()
+    val standbyUsersFlux: Flux<User> = sink.asFlux()
 
-    fun addStandbyUsers(user: User) {
-        standbyUsersQueue.add(user)
-    }
-
-    fun getStandbyUsers(): User {
-        return standbyUsersQueue.poll()
+    fun addStandbyUser(user: User) {
+        sink.tryEmitNext(user)
     }
 }
