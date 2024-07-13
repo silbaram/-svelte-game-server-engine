@@ -19,10 +19,12 @@ class WaitlistHandler(
     }
 
     private fun getUserFromContext(ctx: ChannelHandlerContext): User {
+        //TODO user 정보를 로그인 한정보에서 가져와야 함 지금은 임시
         return User(
+            userId = "testId",
+            username = "TESTER",
             channelId = ctx.channel().id(),
-            channel = ctx.channel(),
-            username = "",
+            channel = ctx.channel()
         )
     }
 }

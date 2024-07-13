@@ -19,8 +19,4 @@ class SvelteRoomContext {
     fun removeRoom(roomId: UUID) {
         roomMap.remove(roomId)
     }
-
-    fun getAllRooms(): List<Room> {
-        return roomMap.values.toList()
-    }
 }
